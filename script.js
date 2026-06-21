@@ -1,9 +1,8 @@
-// Bootstrap mobile menu: toggle class on navbar for styling + close on link click
-const navCollapse = document.getElementById('navMenu');
 const navbar = document.getElementById('navbar');
+const navCollapse = document.getElementById('navMenu');
+
+// Close mobile menu on link click
 if (navCollapse) {
-  navCollapse.addEventListener('show.bs.collapse', () => navbar.classList.add('show-menu'));
-  navCollapse.addEventListener('hidden.bs.collapse', () => navbar.classList.remove('show-menu'));
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
       const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
@@ -12,17 +11,15 @@ if (navCollapse) {
   });
 }
 
-// Navbar scroll effect
-let lastScroll = 0;
-
+// Scroll: swap navbar-dark ↔ navbar-light + bg-white + shadow
 window.addEventListener('scroll', () => {
-  const currentScroll = window.scrollY;
-  if (currentScroll > 50) {
-    navbar.classList.add('scrolled');
+  if (window.scrollY > 50) {
+    navbar.classList.remove('navbar-dark');
+    navbar.classList.add('navbar-light', 'bg-white', 'scrolled');
   } else {
-    navbar.classList.remove('scrolled');
+    navbar.classList.remove('navbar-light', 'bg-white', 'scrolled');
+    navbar.classList.add('navbar-dark');
   }
-  lastScroll = currentScroll;
 });
 
 // Fade-in animation on scroll

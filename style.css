@@ -73,20 +73,15 @@ a:hover {
 }
 
 /* ========================================
-   Navigation
+   Navigation — uses Bootstrap navbar-dark / navbar-light
+   JS swaps the class on scroll. All link/toggler colors are native Bootstrap.
    ======================================== */
 .navbar {
-  background: transparent;
-  border-bottom: 1px solid transparent;
-  transition: all var(--transition);
   padding: 0;
+  transition: background var(--transition), box-shadow var(--transition);
 }
 
 .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.97) !important;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-bottom-color: var(--color-border);
   box-shadow: var(--shadow-sm);
 }
 
@@ -109,40 +104,14 @@ a:hover {
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
   font-weight: 500;
-  color: rgba(255,255,255,0.9);
   border-radius: var(--radius);
-  transition: all var(--transition);
 }
 
-.navbar .nav-link:hover,
-.navbar .nav-link.active {
-  color: #fff;
-  background: rgba(255,255,255,0.15);
-}
-
-.navbar.scrolled .nav-link {
-  color: var(--color-text);
-}
-
-.navbar.scrolled .nav-link:hover,
-.navbar.scrolled .nav-link.active {
-  color: var(--color-primary);
-  background: var(--color-bg-alt);
-}
-
+/* CTA button in nav */
 .nav-cta {
-  background: rgba(255,255,255,0.2) !important;
-  color: #fff !important;
   margin-left: 0.5rem;
   border: 1px solid rgba(255,255,255,0.4);
-}
-
-.nav-cta:hover {
-  background: rgba(255,255,255,0.3) !important;
-}
-
-.nav-cta.active {
-  background: rgba(255,255,255,0.25) !important;
+  border-radius: var(--radius) !important;
 }
 
 .navbar.scrolled .nav-cta {
@@ -154,29 +123,6 @@ a:hover {
 .navbar.scrolled .nav-cta:hover {
   background: var(--color-primary-light) !important;
   border-color: var(--color-primary-light);
-}
-
-.navbar.scrolled .nav-cta.active {
-  background: var(--color-primary-dark) !important;
-  border-color: var(--color-primary-dark);
-}
-
-/* Bootstrap toggler override */
-.navbar-toggler {
-  border-color: rgba(255,255,255,0.4);
-  padding: 0.4rem 0.6rem;
-}
-
-.navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-}
-
-.navbar.scrolled .navbar-toggler {
-  border-color: var(--color-border);
-}
-
-.navbar.scrolled .navbar-toggler-icon {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%2826, 26, 46, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
 /* ========================================
@@ -1321,27 +1267,7 @@ a:hover {
 
 /* ---- Tablet portrait ---- */
 @media (max-width: 768px) {
-  /* Mobile Nav - Bootstrap collapse */
-  .navbar.show-menu {
-    background: var(--color-primary) !important;
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-    border-bottom-color: transparent !important;
-    box-shadow: none !important;
-  }
-
-  .navbar.show-menu .logo-img {
-    filter: brightness(0) invert(1) !important;
-  }
-
-  .navbar.show-menu .navbar-toggler {
-    border-color: rgba(255,255,255,0.4) !important;
-  }
-
-  .navbar.show-menu .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
-  }
-
+  /* Mobile Nav — dropdown is always navy regardless of scroll state */
   .navbar-collapse {
     background: var(--color-primary);
     padding: 1rem 0;
@@ -1350,30 +1276,29 @@ a:hover {
     padding-right: 12px;
   }
 
-  .navbar .navbar-collapse .nav-link {
-    color: rgba(255, 255, 255, 0.85) !important;
-    padding: 0.75rem 1rem;
+  .navbar-collapse .nav-link {
+    color: rgba(255,255,255,0.85) !important;
+    padding: 0.75rem 1rem !important;
     font-size: 1.05rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 0;
-    background: transparent !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0 !important;
   }
 
-  .navbar .navbar-collapse .nav-link:hover,
-  .navbar .navbar-collapse .nav-link.active {
+  .navbar-collapse .nav-link:hover,
+  .navbar-collapse .nav-link.active {
     color: #fff !important;
-    background: rgba(255, 255, 255, 0.1) !important;
+    background: rgba(255,255,255,0.1) !important;
   }
 
-  .navbar .navbar-collapse .nav-cta {
-    margin-left: 0;
+  .navbar-collapse .nav-cta {
+    margin-left: 0 !important;
     margin-top: 0.75rem;
     text-align: center;
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.5rem !important;
     background: var(--color-accent) !important;
     color: var(--color-primary-dark) !important;
     border-color: var(--color-accent) !important;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius-lg) !important;
     border-bottom: none;
     font-weight: 700;
   }
