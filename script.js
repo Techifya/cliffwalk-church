@@ -1,6 +1,9 @@
-// Close Bootstrap mobile menu when clicking a nav link
+// Bootstrap mobile menu: toggle class on navbar for styling + close on link click
 const navCollapse = document.getElementById('navMenu');
+const navbar = document.getElementById('navbar');
 if (navCollapse) {
+  navCollapse.addEventListener('show.bs.collapse', () => navbar.classList.add('show-menu'));
+  navCollapse.addEventListener('hidden.bs.collapse', () => navbar.classList.remove('show-menu'));
   document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', () => {
       const bsCollapse = bootstrap.Collapse.getInstance(navCollapse);
@@ -10,7 +13,6 @@ if (navCollapse) {
 }
 
 // Navbar scroll effect
-const navbar = document.getElementById('navbar');
 let lastScroll = 0;
 
 window.addEventListener('scroll', () => {
